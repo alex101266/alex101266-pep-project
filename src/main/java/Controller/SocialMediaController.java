@@ -36,18 +36,79 @@ public class SocialMediaController {
      */
     public Javalin startAPI() {
         Javalin app = Javalin.create();
-        app.get("/register", this::postRegisterHandler);
+        app.post("/register", this::postRegisterHandler);
+        app.post("/login", this::postLoginHandler);
+        app.post("/messages", this::postMessageHandler);
+        app.get("/messages", this::getAllMessagesHandler);
+        app.get("/messages/{message_id}", this::getMessageAtIdHandler);
+        app.delete("/messages/{message_id}", this::deleteMessageAtIdHandler);
+        app.patch("/messages/{message_id}", this::patchMessageAtIdHandler);
+        app.get("/accounts/{account_id}/messages", this::getMessagesAtAccountIdHandler);
 
         return app;
     }
 
     /**
-     * This is an example handler for an example endpoint.
+     * Handler to post (register) a new account
      * @param context The Javalin Context object manages information about both the HTTP request and response.
      */
     private void postRegisterHandler(Context context) {
         context.json("sample text");
     }
 
+    /**
+     * Handler to post (authenticate and authorize) account login credentials
+     * @param context The Javalin Context object manages information about both the HTTP request and response.
+     */
+    private void postLoginHandler(Context context) {
+        context.json("sample text");
+    }
 
+    /**
+     * Handler to post a new message
+     * @param context The Javalin Context object manages information about both the HTTP request and response.
+     */
+    private void postMessageHandler(Context context) {
+        context.json("sample text");
+    }
+
+    /**
+     * Handler to post a new message
+     * @param context The Javalin Context object manages information about both the HTTP request and response.
+     */
+    private void getAllMessagesHandler(Context context) {
+        context.json("sample text");
+    }
+
+    /**
+     * Handler to get a message given the message id
+     * @param context The Javalin Context object manages information about both the HTTP request and response.
+     */
+    private void getMessageAtIdHandler(Context context) {
+        context.json("sample text");
+    }
+
+    /**
+     * Handler to delete a message given the message id
+     * @param context The Javalin Context object manages information about both the HTTP request and response.
+     */
+    private void deleteMessageAtIdHandler(Context context) {
+        context.json("sample text");
+    }
+
+    /**
+     * Handler to patch a message given the message id
+     * @param context The Javalin Context object manages information about both the HTTP request and response.
+     */
+    private void patchMessageAtIdHandler(Context context) {
+        context.json("sample text");
+    }
+
+    /**
+     * Handler to get all messages of an account by account id
+     * @param context The Javalin Context object manages information about both the HTTP request and response.
+     */
+    private void getMessagesAtAccountIdHandler(Context context) {
+        context.json("sample text");
+    }
 }
