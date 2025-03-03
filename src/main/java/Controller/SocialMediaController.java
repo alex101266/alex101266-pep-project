@@ -26,7 +26,7 @@ public class SocialMediaController {
      */
     public SocialMediaController(){
         this.accountService = new AccountService();
-        this.messageService = new MessageService();
+        this.messageService = new MessageService(accountService);
     }
 
     /**
