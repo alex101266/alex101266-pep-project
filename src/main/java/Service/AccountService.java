@@ -3,7 +3,7 @@ package Service;
 import Model.Account;
 import DAO.AccountDAO;
 
-import java.util.List;
+//import java.util.List;
 
 
 public class AccountService {
@@ -51,5 +51,9 @@ public class AccountService {
         return returnedAccount;
     }
 
-
+    // Since we don't really need to gather the account by id for anything, we can leave this as boolean
+    public boolean userExists(int id){
+        boolean validUser = accountDAO.validateUserExists(id);
+        return validUser;
+    }
 }
