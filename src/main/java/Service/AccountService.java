@@ -3,8 +3,6 @@ package Service;
 import Model.Account;
 import DAO.AccountDAO;
 
-//import java.util.List;
-
 
 public class AccountService {
     private AccountDAO accountDAO;
@@ -27,18 +25,16 @@ public class AccountService {
     /**
      * Verify that username isn't blank or already used and that password is at least 4 characters long.
      * If valid, use accountDAO to persist the account.
-     * @param account
-     * @return
+     * @param account to be registered to the app
+     * @return account if it persisted successfully, otherwise null if it failed
      */
     public Account registerAccount(Account account){
         String username = account.getUsername().strip();
         String password = account.getPassword().strip();
         if( (username.length()>0) && (password.length()>3) && (accountDAO.getAccountByUsername(username)==null) ){
-            Account returnedAccount = accountDAO.insertAccount(account);
-            return returnedAccount;
-        } else{
-            return null;
+            return accountDAO.insertAccount(account);
         }
+        return null;
     }
 
     /**
@@ -47,13 +43,15 @@ public class AccountService {
      * @return account if credentials are valid for login
      */
     public Account authorizeLogin(Account account){
-        Account returnedAccount = accountDAO.authenticateLogin(account);
-        return returnedAccount;
+        return accountDAO.authenticateLogin(account);
     }
 
-    // Since we don't really need to gather the account by id for anything, we can leave this as boolean
+    /**
+     * Checks if such an account exists.
+     * @param id of the account being validated to exist
+     * @return true if this account exists, false if it doesn't exist
+     */
     public boolean userExists(int id){
-        boolean validUser = accountDAO.validateUserExists(id);
-        return validUser;
+        return accountDAO.validateUserExists(id);
     }
 }

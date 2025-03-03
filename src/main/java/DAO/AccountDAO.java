@@ -20,10 +20,9 @@ public class AccountDAO {
             preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
             if(rs.next()){
-                Account account = new Account(rs.getInt("account_id"),
+                return new Account(rs.getInt("account_id"),
                         rs.getString("username"),
                         rs.getString("password"));
-                return account;
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -84,7 +83,7 @@ public class AccountDAO {
     /**
      * Determines if an account within the Account database exists with this account_id.
      * @param id of the account whose existance is being checked
-     * @return true if an account with this account_id exists, false if there is no account under this account_id
+     * @return true if an account with this account_id exists, false if doesn't exist
      */
     public boolean validateUserExists(int id){
         Connection connection = ConnectionUtil.getConnection();
