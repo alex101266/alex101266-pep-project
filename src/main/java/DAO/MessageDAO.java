@@ -71,6 +71,7 @@ public class MessageDAO {
         try{
             String sql = "SELECT * FROM Message WHERE message_id=?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,id);
             ResultSet rs = preparedStatement.executeQuery();
 
             if(rs.next()){
@@ -129,7 +130,6 @@ public class MessageDAO {
             if(rowsAffected>0){
                 return getMessageById(id);
             }
-
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
