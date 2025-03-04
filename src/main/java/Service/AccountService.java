@@ -26,7 +26,7 @@ public class AccountService {
      * Verify that username isn't blank or already used and that password is at least 4 characters long.
      * If valid, use accountDAO to persist the account.
      * @param account to be registered to the app
-     * @return account if it persisted successfully, otherwise null if it failed
+     * @return account if it was registered successfully, otherwise null if the registration failed
      */
     public Account registerAccount(Account account){
         String username = account.getUsername().strip();
@@ -40,7 +40,7 @@ public class AccountService {
     /**
      * Authorize login if account credentials are authenticated by accountDAO
      * @param account to be authenticated
-     * @return account if credentials are valid for login
+     * @return account if credentials are authorized for login, otherwise null if the authentication failed
      */
     public Account authorizeLogin(Account account){
         return accountDAO.authenticateLogin(account);
