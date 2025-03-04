@@ -53,7 +53,7 @@ public class MessageService {
     public Message createMessage(Message message){
         String text = message.message_text.strip();
         int id = message.posted_by;
-        if( (text!=null) && (text.length()<255) && (accountService.userExists(id))){
+        if( (text.length()>0) && (text!=null) && (text.length()<255) && (accountService.userExists(id))){
             Message returnedMessage = messageDAO.insertMessage(message);
             return returnedMessage;
         }
@@ -81,14 +81,13 @@ public class MessageService {
     /**
      * Updates the message using its message_id.
      * @param id of the message to be updated
-     * @param updatedMessageText that is to replace the current message_text
+     * @param message that is empty besides the message_text which should be used to update the message
      * @return Message contents if the update was successful, otherwise null if the update failed
      */
-    public Message updateMessage(int id, String updatedMessageText){
-        String text = updatedMessageText.strip();
-        if( (messageDAO.validateMessageExists(id)) && (text!="") && (text.length()<255) ){
-            Message returnedMessage = messageDAO.updateMessage(id,text);
-            return returnedMessage;
+    public Message updateMessage(int id, String updatedText){
+        String text = updatedText.strip();
+        if( (text!=null) && (text.length()>0) && (text.length()<255) && (messageDAO.validateMessageExists(id)) ){
+            return messageDAO.updateMessage(id,text);
         }
         return null;
     }
